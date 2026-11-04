@@ -1,4 +1,3 @@
-
 const data = {
     2016: { m: [17.8, 137.3, 1.1, 74.6], t: "Marketplace & m-Commerce", x: "m-Commerce launched. Top 3 electronics retailers joined the platform.", s: [[15, "%", "Retail cashless share"], [3, "", "Top electronics retailers"]] },
     2017: { m: [18.0, 166.8, 4.1, 76.4], t: "Super-App Birth", x: "Kaspi.kz super-app, P2P payments, and Kaspi Juma introduced.", s: [] },
@@ -10,10 +9,19 @@ const data = {
 
 const rows = [["Total Population (millions)", 1, ""], ["GDP (Billion $)", 1, ""], ["GDP Growth (annual %)", 1, "%"], ["Internet Users (%)", 1, "%"]];
 let cur = 2020;
+const sex = {2016:[51.6,48.4],2017:[51.5,48.5],2018:[51.5,48.5],2019:[51.5,48.5],2020:[51.5,48.5]}; // Exhibit 2, women/men %
+const sexInfo = y => { const g = sex[y], p = data[y].m[0]; return g ? { f: g[0], m: g[1], fm: (p*g[0]/100).toFixed(2), mm: (p*g[1]/100).toFixed(2) } : null; };
+function renderGender() {
+  const s = sexInfo(cur);
+  $("#gf").innerHTML = s ? `${s.fm}M <small>${s.f}%</small>` : "n.a.";
+  $("#gm").innerHTML = s ? `${s.mm}M <small>${s.m}%</small>` : "n.a.";
+  $("#gbi").style.width = (s ? s.f : 50) + "%";
+  $("#gnote").textContent = s ? "" : "Sex split for 2021 is not given in the case.";
+}
 const $ = s => document.querySelector(s);
 const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const fmt = (v, d, s) => (v < 0 ? "−" : "") + Math.abs(v).toFixed(d).replace(".", ",") + s;
+const fmt = (v, d, s) => (v < 0 ? "−" : "") + Math.abs(v).toFixed(d) + s;
 
 function count(el, to, d, s) {
     d = d || 0; s = s || "";
@@ -46,6 +54,7 @@ function render() {
     rows.forEach((r, i) => { if (d.m[i] != null) count($(`[data-m="${i}"]`), d.m[i], r[1], r[2]); });
     $("#kstats").innerHTML = d.s.map((s, i) => `<div class="f" style="padding:16px"><div class="n" data-ks="${i}" style="font-size:26px">${s[0]}${s[1]}</div><div class="cap">${s[2]}</div></div>`).join("");
     d.s.forEach((s, i) => count($(`[data-ks="${i}"]`), s[0], 0, s[1] ? " " + s[1] : ""));
+    renderGender();
     if (gdpChart) {
         gdpChart.data.datasets[0].backgroundColor = Object.keys(data).map(y => y == cur ? "#F14635" : css("--line"));
         gdpChart.update();
@@ -70,13 +79,25 @@ let gdpChart = null;
 const baseOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: css("--line") }, border: { display: false } } } };
 const legOpts = { ...baseOpts, plugins: { legend: { display: true, position: "bottom" } } };
 
+const gdpOpts = {
+    ...baseOpts,
+    interaction: { mode: "index", intersect: false },
+    onClick: (e, els) => { if (els.length) setYear(+Object.keys(data)[els[0].index]); },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? "pointer" : "default"; },
+    animation: { duration: RM ? 0 : 400 },
+    plugins: { legend: { display: false }, tooltip: { displayColors: false, padding: 12, callbacks: {
+        label: c => "GDP: $" + c.parsed.y + "B",
+        afterLabel: c => { const s = sexInfo(Object.keys(data)[c.dataIndex]); return s ? [`Women: ${s.fm}M (${s.f}%)`, `Men: ${s.mm}M (${s.m}%)`] : "Sex split: n.a."; }
+    } } }
+};
+
 window.addEventListener('DOMContentLoaded', () => {
     const yrs = Object.keys(data);
 
     gdpChart = new Chart($("#cGdp"), {
         type: "bar",
         data: { labels: yrs, datasets: [{ data: yrs.map(y => data[y].m[1]), borderRadius: 4, backgroundColor: yrs.map(y => y == cur ? "#F14635" : css("--line")) }] },
-        options: baseOpts
+        options: gdpOpts
     });
 
     new Chart($("#cApp"), {
