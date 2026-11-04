@@ -11,7 +11,7 @@
   --radius: 16px;
   --sec: clamp(40px, 8vw, 96px);
   --gut: clamp(16px, 4vw, 32px);
-  --hh: 68px;                      /* высота шапки */
+  --hh: 112px;                      /* высота шапки */
   --tap: 44px;                     /* минимальная зона касания */
   color-scheme: light dark;
 }
@@ -240,7 +240,7 @@ footer {
 
 /* Узкие телефоны ≤ 479px: шапка в два яруса — лого сверху, табы на всю ширину */
 @media (max-width: 479px) {
-  :root { --hh: 96px; }
+  :root { --hh: 156px; }
   #bar .wrap { flex-wrap: wrap; align-content: center; gap: 4px 12px; padding-block: 8px; }
   .logo { font-size: 18px; }
   [role=tablist] { flex: 1 0 100%; margin-inline: calc(var(--gut) * -1); padding-inline: var(--gut); }
@@ -304,3 +304,35 @@ footer {
   .tab-pane { display: block; }
   .card, details { break-inside: avoid; }
 }
+/* ---------- Header redesign ---------- */
+#bar { background: var(--bar-bg); border-bottom: 2px solid var(--ink); }
+#bar .wrap { gap: 32px; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 24px; min-width: 0; }
+.logo { font-size: clamp(30px, 3.6vw, 40px); letter-spacing: -0.045em; line-height: 1; }
+.case { padding-left: 24px; border-left: 1px solid var(--line); font-size: 11px; line-height: 1.6; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); }
+.case b { display: block; color: var(--ink); font-weight: 700; font-size: 12px; }
+.yearnav { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.yearnav > span { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); flex: none; }
+[role=tab] { min-height: 44px; padding: 12px 20px; font-size: 14px; letter-spacing: .01em; }
+[role=tab][aria-selected=true] { transform: translateY(-1px); }
+@media (max-width: 899px) { .case { display: none; } }
+@media (max-width: 479px) {
+  #bar .wrap { gap: 12px; }
+  .yearnav { flex: 1 0 100%; }
+  .yearnav > span { display: none; }
+  [role=tablist] { flex: 1 1 auto; margin-inline: 0; padding-inline: 0; }
+  [role=tab] { padding-inline: 16px; }
+}
+
+/* ---------- Gender panel & interactive chart ---------- */
+.gender { margin: 24px 0 8px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; }
+.gt { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); margin-bottom: 12px; }
+.grow { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 600; color: var(--mut); }
+.grow b { color: var(--ink); font-size: 16px; font-weight: 800; margin-left: 6px; }
+.grow b small { font-size: 12px; font-weight: 600; color: var(--mut); margin-left: 4px; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 8px 1px 0; background: var(--red); }
+.dot.m { background: var(--ink); margin: 0 0 1px 8px; }
+.gbar { height: 6px; border-radius: 3px; background: var(--ink); margin: 12px 0 8px; overflow: hidden; }
+.gbar i { display: block; height: 100%; width: 50%; background: var(--red); transition: width .6s cubic-bezier(.2,.7,.2,1); }
+.gnote { font-size: 12px; color: var(--mut); min-height: 1em; }
+.chart canvas { cursor: pointer; }
