@@ -5,18 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Kaspi.kz: Building Trust through Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
 
     <header id="bar">
         <div class="wrap">
-            <div class="logo">Kaspi<b>.kz</b></div>
-            <div role="tablist" aria-label="Year Selector" id="tabs"></div>
+            <div class="brand">
+                <div class="logo">Kaspi<b>.kz</b></div>
+                <div class="case"><b>Building Trust through Innovation</b>HBS Case 9-324-022</div>
+            </div>
+            <div class="yearnav">
+                <span>Select year</span>
+                <div role="tablist" aria-label="Year Selector" id="tabs"></div>
+            </div>
         </div>
     </header>
 
@@ -25,36 +30,24 @@
         <!-- HERO -->
         <section class="hero">
             <h1>Building Trust through Innovation</h1>
-            <p class="lead">How a Kazakhstani bank transformed into a premier super-app for 10 million people. Based on
-                Harvard Business School Case 9-324-022.</p>
+            <p class="lead">How a Kazakhstani bank became a super-app for 10 million people. Based on Harvard Business
+                School Case 9-324-022.</p>
             <div class="facts">
-                <div class="f">
-                    <div class="n" data-n="10" data-s="M">10M</div>
-                    <div class="cap">Unique Customers (June 2021)</div>
-                </div>
-                <div class="f">
-                    <div class="n" data-n="6.5" data-d="1" data-s="B $">$6.5B</div>
-                    <div class="cap">London IPO Valuation (Oct 2020)</div>
-                </div>
-                <div class="f">
-                    <div class="n" data-n="92" data-s="%">92%</div>
-                    <div class="cap">Customer Retention Rate (2020)</div>
-                </div>
-                <div class="f">
-                    <div class="n" data-n="80" data-s="%">80%</div>
-                    <div class="cap">Retail Cashless Transactions (2021)</div>
-                </div>
+                <div class="f"><div class="n">10M</div><div class="cap">Unique customers out of 19M citizens (June 2021)</div></div>
+                <div class="f"><div class="n">$6.5B</div><div class="cap">London IPO valuation (Oct 2020)</div></div>
+                <div class="f"><div class="n">92%</div><div class="cap">Customer retention (2020)</div></div>
+                <div class="f"><div class="n">80%</div><div class="cap">Cashless retail transactions, up from 15% in 2016</div></div>
             </div>
         </section>
 
-        <!-- YEARLY INSPECTOR -->
+        <!-- 1. MACRO DATA (first) -->
         <section class="sec" id="years">
             <div class="row">
                 <div class="lab"><b>Macro Data</b>Yearly Inspector</div>
                 <div class="card">
-                    <h2 style="margin-top:0">Kazakhstan & Kaspi Milestone Evolution</h2>
-                    <p class="mut">Select a year above to inspect annual macroeconomic indicators (Exhibit 2) and key
-                        Kaspi product steps.</p>
+                    <h2 style="margin-top:0">Kazakhstan &amp; Kaspi, year by year</h2>
+                    <p class="mut">Click a bar or pick a year in the header: macro indicators (Exhibit 2), population by
+                        sex and the Kaspi milestone of that year.</p>
 
                     <div class="cols" style="margin-top:24px">
                         <div>
@@ -65,21 +58,27 @@
                         </div>
                         <div>
                             <div class="scroll">
-                                <table>
-                                    <tbody id="mt" aria-live="polite"></tbody>
-                                </table>
+                                <table><tbody id="mt" aria-live="polite"></tbody></table>
                             </div>
-                            <div class="chart"><canvas id="cGdp" role="img"
-                                    aria-label="Kazakhstan GDP by Year"></canvas></div>
-                            <p class="note">GDP ($B). 2016–2020: Exhibit 2. 2021: ~182B from case text. "n.a." = Not
-                                available in case.</p>
+                            <div class="gender sw">
+                                <div class="gt">Population by sex</div>
+                                <div class="grow">
+                                    <span><i class="dot f"></i>Women <b id="gf"></b></span>
+                                    <span>Men <b id="gm"></b><i class="dot m"></i></span>
+                                </div>
+                                <div class="gbar"><i id="gbi"></i></div>
+                                <div class="gnote" id="gnote"></div>
+                            </div>
+                            <div class="chart"><canvas id="cGdp" role="img" aria-label="Kazakhstan GDP by year. Click a bar to select the year."></canvas></div>
+                            <p class="note">GDP, $B. Click a bar to select a year. 2016–2020: Exhibit 2; 2021: ~$182B from the
+                                case text. Sex split = Exhibit 2 shares × total population; "n.a." = not in the case.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- THEMATIC CHAPTERS -->
+        <!-- 2. HBS CASE -->
         <section class="sec">
             <div class="row">
                 <div class="lab"><b>HBS Case</b>Core Sections</div>
@@ -87,171 +86,158 @@
 
                     <div class="nav-pills" id="chapterPills">
                         <button class="pill-btn active" onclick="switchTab(0)">1. Early Years</button>
-                        <button class="pill-btn" onclick="switchTab(1)">2. Trust & NPS</button>
+                        <button class="pill-btn" onclick="switchTab(1)">2. Trust &amp; NPS</button>
                         <button class="pill-btn" onclick="switchTab(2)">3. Super-App</button>
-                        <button class="pill-btn" onclick="switchTab(3)">4. Data & Privacy</button>
-                        <button class="pill-btn" onclick="switchTab(4)">5. Ecosystem & IPO</button>
+                        <button class="pill-btn" onclick="switchTab(3)">4. Data &amp; Privacy</button>
+                        <button class="pill-btn" onclick="switchTab(4)">5. Ecosystem &amp; IPO</button>
                         <button class="pill-btn" onclick="switchTab(5)">6. Expansion</button>
                     </div>
 
-                    <!-- TAB 0 -->
                     <div class="tab-pane active" id="tab-0">
                         <div class="card">
-                            <h2>From Commercial Bank to Tech Pioneer</h2>
-                            <p>In 2007, Mikhail Lomtadze became CEO of Kaspiyskiy Bank (ranked 15th out of 38 banks) and
-                                shifted focus from corporate lending to retail. By 2012, despite high profitability,
-                                customer satisfaction metrics revealed serious shortcomings.</p>
+                            <h2>From a mid-table bank to a technology company</h2>
+                            <p>Kazakhstan is the largest economy in Central Asia ($182B GDP in 2021) and set out in 2012
+                                to reach the global top 30 by 2050. In 2002 Vyacheslav Kim, who had introduced
+                                buy-now-pay-later for electronics, bought Kaspiyskiy bank; Baring Vostok became a major
+                                shareholder in 2006.</p>
+                            <p>In 2007 Mikhail Lomtadze became CEO of a bank ranked 15th of 38, fighting for corporate
+                                clients. He moved it to retail, reasoning that lending to thousands of consumers made
+                                more sense than lending to a handful of businesses, and rebranded as Kaspi Bank in 2008.
+                                The first NPS survey in 2012 contradicted the strong profit figures.</p>
                             <div class="q">
                                 "We were too focused on profitability, so we lost sight of the customer."
-                                <small>Mikhail Lomtadze on 2012 NPS results</small>
+                                <small>Mikhail Lomtadze on the 2012 NPS results</small>
                             </div>
                             <details>
-                                <summary>Detailed Background & Leadership</summary>
-                                <p>Vyacheslav Kim acquired the bank in 2002 after pioneering electronics retail and BNPL
-                                    installments in Kazakhstan. In 2005, Kim brought in Lomtadze (HBS MBA 2002, Baring
-                                    Vostok partner). The team rebranded to Kaspi Bank in 2008 and committed to a
-                                    customer-centric technology mission.</p>
+                                <summary>Mission and the pivot</summary>
+                                <p>The team concluded that none of them were bankers at heart and that people
+                                    generally disliked banks. The new mission: be a technology company that improves
+                                    people's lives, starting from the customer's problem rather than the technology.</p>
                             </details>
                         </div>
                     </div>
 
-                    <!-- TAB 1 -->
                     <div class="tab-pane" id="tab-1">
                         <div class="card">
-                            <h2>Zero-Fee Payments & NPS as Core KPI</h2>
-                            <p>Kaspi solved a major customer pain point by launching digital utility payments with zero
-                                commission. However, the February 2014 tenge devaluation caused a bank run, exposing the
-                                fragility of customer trust.</p>
+                            <h2>Commission-free payments, then NPS as the main KPI</h2>
+                            <p>Kaspi's first product targeted a concrete pain: people lost a full day each month in
+                                queues and paid fees to settle utility bills. A commission-free digital platform
+                                produced recurring customers. Functional silos were replaced by product teams, each with
+                                one accountable head, sometimes a 25-year-old.</p>
+                            <p>In February 2014 the tenge fell almost 20%, social-media rumors triggered a run on
+                                deposits, and queues formed outside Kaspi outlets. Kaspi handled it, but the lesson
+                                was clear.</p>
                             <div class="q">
                                 "If our customers loved and trusted us, they wouldn't have been at our doorstep asking
                                 for their money within 12 hours of a rumor."
                                 <small>Mikhail Lomtadze</small>
                             </div>
                             <details>
-                                <summary>The Independent NPS Department</summary>
-                                <p>Led by Bota Turapbaeva, an independent NPS team makes ~40,000 phone calls monthly
-                                    within an hour of customer touchpoints. Detractor calls are reviewed monthly by
-                                    product heads, making NPS the primary corporate KPI.</p>
+                                <summary>How the NPS machine works</summary>
+                                <p>An independent team under Bota Turapbaeva makes about 40,000 calls a month, usually
+                                    within an hour of a customer touchpoint, with two questions: would you recommend it,
+                                    and why. Email surveys reach about 5% of customers; calls cover the other 95%.
+                                    Feedback is sorted into nine categories, and product heads listen to recordings
+                                    monthly to find root causes. NPS replaced most individual and departmental financial
+                                    metrics.</p>
+                            </details>
+                            <details>
+                                <summary>Overcoming internal resistance</summary>
+                                <p>Lomtadze showed call recordings and social-media screenshots first to senior
+                                    management, then to 100 key people. After hearing customers directly, staff needed
+                                    no more convincing.</p>
                             </details>
                         </div>
                     </div>
 
-                    <!-- TAB 2 -->
                     <div class="tab-pane" id="tab-2">
                         <div class="card">
-                            <h2>Starting Simple & Building the Super-App</h2>
-                            <p>In December 2014, Kaspi launched its marketplace without a shopping cart (one item per
-                                seller), achieving an initial NPS of ~85. In 2017, the super-app launched alongside P2P
-                                payments, eventually surpassing Facebook and WhatsApp in daily usage.</p>
-                            <div class="chart"><canvas id="cApp" role="img"
-                                    aria-label="Kaspi MAU and DAU Engagement"></canvas></div>
-                            <p class="note">MAU & DAU in millions (Exhibit 7). Average DAU/MAU rose from 46% to 59%.</p>
+                            <h2>Start simple, add features, then unify in a super-app</h2>
+                            <p>From about 100 monthly proposals, roughly 10 are approved. Each begins as a three-page
+                                customer-experience document with ten customer Q&amp;As, followed by an internal
+                                prototype test. The marketplace launched in December 2014, nine months after a study trip
+                                to Rakuten, with no shopping cart: one item from one seller. It still opened with an NPS
+                                of about 85, and by 2016 the three largest electronics retailers had joined.</p>
+                            <p>The 2017 super-app, launched with free P2P transfers, was opposed by almost the whole team
+                                because products became interdependent. Lomtadze's answer was to ask "Why not?" By 2020 it
+                                was used by 60% of the population and had overtaken Facebook and WhatsApp. Kaspi Travel
+                                took 20% of the travel-agency market within three months.</p>
+                            <div class="chart"><canvas id="cApp" role="img" aria-label="Kaspi MAU and DAU engagement"></canvas></div>
+                            <p class="note">MAU and DAU, millions (Exhibit 7). DAU/MAU rose from 46% to 59%; the Kazakh tech
+                                sector averaged 10–20% in 2021.</p>
                         </div>
                     </div>
 
-                    <!-- TAB 3 -->
                     <div class="tab-pane" id="tab-3">
                         <div class="card">
-                            <h2>Minimalist Data Collection</h2>
-                            <p>Around 2013, Kaspi adopted a strict principle: collect only the data needed to
-                                immediately improve user experience. Complex algorithms slow down product cycles, so
-                                data collection is kept minimal.</p>
-                            <details>
-                                <summary>Data Governance & Security</summary>
-                                <p>Terms and conditions fit into 3–5 simple sentences. Kaspi never sells user data, and
-                                    technologies like Kaspi ID protect against fraud.</p>
+                            <h2>Collect only the data you will use</h2>
+                            <p>Kaspi first gathered as much data as possible, then realized that less was better for the
+                                customer and for speed: algorithms built on heavy datasets slow down release cycles. Around
+                                2013 it adopted the rule that data must be usable to improve the user experience.</p>
+                            <details open>
+                                <summary>Consent, fraud and privacy</summary>
+                                <p>Consent terms fit into three to five sentences. Kaspi occasionally buys third-party data
+                                    for personalization and cross-checks profiles against public social-media data to
+                                    detect fraud, but it never sells data. Banking regulation made privacy "part of our
+                                    DNA", and Kaspi ID adds protection.</p>
                             </details>
                         </div>
                     </div>
 
-                    <!-- TAB 4 -->
                     <div class="tab-pane" id="tab-4">
                         <div class="card">
-                            <h2>Merchants, Gov-Tech & London IPO</h2>
-                            <p>Kaspi Pay brought low-cost QR payments and instant BNPL to merchants. During the
-                                pandemic, Kaspi partnered with the government to digitalize public services, distribute
-                                social benefits, and donate ambulances. In October 2020, Kaspi successfully listed on
-                                the London Stock Exchange at a $6.5B valuation.</p>
+                            <h2>Merchants, government and investors</h2>
+                            <p><b>Merchants.</b> One-click in-store BNPL raised average transaction value by up to 35% and
+                                is used by 45% of partner stores. QR payments, priced lowest on the market, handled over
+                                60% of in-store transactions by end-2020; in 2021 Kaspi Pay ran 180,000 of Kazakhstan's
+                                356,000 POS terminals.</p>
+                            <p><b>Government.</b> Car ownership changes and sole-proprietor registration moved into the
+                                app. During the pandemic Kaspi tripled parcel volumes with free delivery, built and donated
+                                100 ambulances, and created an online platform for social benefits.</p>
+                            <p><b>Investors.</b> The October 2020 London IPO was the second largest on the LSE that year and
+                                fourth in Europe, opening at $38 and reaching $47. Lomtadze excluded himself from the
+                                employee option plan. Kaspi sets 10–15 KPIs a year and reports quarterly; market
+                                capitalization had passed $14B by May 2021.</p>
 
-                            <div class="chart"><canvas id="cFin" role="img"
-                                    aria-label="Revenue and Adjusted Net Income Growth"></canvas></div>
-                            <p class="note">Revenue and Adjusted Net Income in billion KZT (Exhibit 10).</p>
+                            <div class="chart"><canvas id="cFin" role="img" aria-label="Revenue and adjusted net income"></canvas></div>
+                            <p class="note">Revenue and adjusted net income, KZT billion (Exhibit 10).</p>
 
-                            <h3 style="margin-top:28px">Shareholder Structure (Dec 31, 2020)</h3>
+                            <h3 style="margin-top:28px">Shareholder structure (31 Dec 2020)</h3>
                             <div class="scroll">
                                 <table>
-                                    <tr>
-                                        <th>Shareholder</th>
-                                        <th style="text-align:right">Ownership %</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Baring Vostok</td>
-                                        <td class="v">31.07%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Vyacheslav Kim</td>
-                                        <td class="v">24.52%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mikheil Lomtadze</td>
-                                        <td class="v">22.92%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Public Investors</td>
-                                        <td class="v">15.45%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Goldman Sachs</td>
-                                        <td class="v">3.38%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Management</td>
-                                        <td class="v">2.66%</td>
-                                    </tr>
+                                    <tr><th>Shareholder</th><th style="text-align:right">Ownership</th></tr>
+                                    <tr><td>Baring Vostok</td><td class="v">31.07%</td></tr>
+                                    <tr><td>Vyacheslav Kim</td><td class="v">24.52%</td></tr>
+                                    <tr><td>Mikheil Lomtadze</td><td class="v">22.92%</td></tr>
+                                    <tr><td>Public investors</td><td class="v">15.45%</td></tr>
+                                    <tr><td>Goldman Sachs</td><td class="v">3.38%</td></tr>
+                                    <tr><td>Management</td><td class="v">2.66%</td></tr>
                                 </table>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TAB 5 -->
                     <div class="tab-pane" id="tab-5">
                         <div class="card">
-                            <h2>Regional Expansion (June 2021)</h2>
-                            <p>Serving 10 million customers in Kazakhstan, Lomtadze targeted international expansion,
-                                centralizing product development in Kazakhstan while scaling marketing abroad.</p>
-
+                            <h2>Can trust travel? Expansion, June 2021</h2>
+                            <p>Q2 2021 net income grew 94% to about $240M, a dividend of about $180M was announced, and the
+                                full-year profit target rose to about $1B. NPS for new products held near 80, matching
+                                established ones. Lomtadze wanted product development to stay in Kazakhstan, with
+                                foreign teams focused on marketing and partnerships, and expected market entry to take
+                                under twelve months. Azerbaijan had already been entered in 2019 by acquiring
+                                marketplaces with two million users.</p>
                             <div class="scroll">
                                 <table>
-                                    <tr>
-                                        <th>Country (2020)</th>
-                                        <th>Population</th>
-                                        <th>GDP ($B)</th>
-                                        <th>GDP Growth</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Azerbaijan</td>
-                                        <td class="v">10.1M</td>
-                                        <td class="v">$42.6B</td>
-                                        <td class="v">−4.3%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ukraine</td>
-                                        <td class="v">44.1M</td>
-                                        <td class="v">$155.6B</td>
-                                        <td class="v">−4.0%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Uzbekistan</td>
-                                        <td class="v">34.2M</td>
-                                        <td class="v">$57.7B</td>
-                                        <td class="v">1.6%</td>
-                                    </tr>
+                                    <tr><th>Country (2020)</th><th>Population</th><th>GDP</th><th>GDP growth</th></tr>
+                                    <tr><td>Azerbaijan</td><td class="v">10.1M</td><td class="v">$42.6B</td><td class="v">−4.3%</td></tr>
+                                    <tr><td>Ukraine</td><td class="v">44.1M</td><td class="v">$155.6B</td><td class="v">−4.0%</td></tr>
+                                    <tr><td>Uzbekistan</td><td class="v">34.2M</td><td class="v">$57.7B</td><td class="v">1.6%</td></tr>
                                 </table>
                             </div>
                             <div class="q" style="margin-top:20px">
-                                Will the ability to build trust through innovation be enough to secure a market position
-                                abroad?
-                                <small>Central question of Harvard Business School case</small>
+                                Would customers elsewhere see Kaspi as just another foreign brand, or as a new force
+                                looking to help? What must stay the same, and what must change?
+                                <small>The open question of the case</small>
                             </div>
                         </div>
                     </div>
@@ -267,7 +253,7 @@
             Educational web visualization.</div>
     </footer>
 
-    <script src="index.js"></script>
+    <script src="/index.js"></script>
 </body>
 
 </html>
